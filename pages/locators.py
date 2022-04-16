@@ -3,6 +3,9 @@ from selenium.webdriver.common.by import By
 
 class MainPageLocators:
     LOGIN_LINK = (By.CSS_SELECTOR, "#login_link")
+    FIND_BASKET = (By.XPATH, "//span/a[contains(@href, '/basket/')]")
+    ITEM_IN_BASKET = (By.CSS_SELECTOR, "basket-items")
+    BASKET_IS_EMPTY = (By.XPATH, "//p/a[contains(@href, '/')]")
 
 
 class LoginPageLocators:
