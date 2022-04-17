@@ -1,6 +1,6 @@
 import math
 from .base_page import BasePage
-from .locators import ProductPageLocators
+from .locators import ProductPageLocators, MainPageLocators
 from selenium.common.exceptions import NoAlertPresentException
 
 
@@ -10,6 +10,17 @@ class ProductPage(BasePage):
 
     def add_to_basket(self):
         self.browser.find_element(*ProductPageLocators.ADD_TO_BASKET).click()
+
+    def go_to_basket_from_product_page(self):
+        basket = self.browser.find_element(*MainPageLocators.FIND_BASKET)
+        basket.click()
+
+    def wait_not_product_in_basket(self):
+        assert self.is_not_element_present(*MainPageLocators.ITEM_IN_BASKET), "Items must not be"
+
+    def wait_basket_is_empty(self):
+        empty = self.browser.find_element(*MainPageLocators.BASKET_IS_EMPTY)
+        return empty
 
     def solve_quiz_and_get_code(self):
         alert = self.browser.switch_to.alert
@@ -45,4 +56,5 @@ class ProductPage(BasePage):
     def should_not_be_success_message_is_disappeared(self):
         assert self.is_not_element_present(*ProductPageLocators.SUCCESS_MESSAGE), \
             "Success message is presented, but should not be"
+
 

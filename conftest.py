@@ -19,8 +19,8 @@ def browser(request):
         user_language = request.config.getoption("language")
         options = Options()
         options.add_experimental_option('prefs', {'intl.accept_languages': user_language})
-        # options.add_argument('headless')
-        # options.add_argument('window-size=1920x935')
+        # options.add_argument('headless')  # Это не лишний код, он для заупска selenium без браузера
+        # options.add_argument('window-size=1920x935')  # Это не лишний код, он для заупска selenium без браузера
         browser = webdriver.Chrome(options=options)
     elif browser_name == "firefox":
         print("\nstart firefox browser for test..")
